@@ -12,4 +12,7 @@ eureka:
     register-with-eureka: false #是否将最近注册到eureka    如需要eureka互相注册，打开设为true
     service-url:          #配置暴露给eureka client的服务地址
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #可以写多个，如需获取服务信息，写对方注册中心的地址
+  server:
+    enable-self-preservation: false  #关闭自我保护
+    eviction-interval-timer-in-ms: 4000  #剔除服务间隔        线上环境默认不适用
 
