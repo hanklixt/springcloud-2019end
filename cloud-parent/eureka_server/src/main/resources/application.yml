@@ -8,8 +8,8 @@ eureka:
   instance:
     hostname: localhost
   client:
-    fetch-registry: false  #是否从eureka获取注册信息
-    register-with-eureka: false #是否将最近注册到eureka
+    fetch-registry: false  #是否从eureka获取注册信息    如需要eureka互相注册，打开设为true
+    register-with-eureka: false #是否将最近注册到eureka    如需要eureka互相注册，打开设为true
     service-url:          #配置暴露给eureka client的服务地址
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #可以写多个，如需获取服务信息，写对方注册中心的地址
 

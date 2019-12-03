@@ -16,6 +16,6 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9000/eureka
+      defaultZone: http://localhost:9000/eureka/ #http://localhost:9000/eureka/,http://localhost:8000/eureka/ 注册到多个注册中心
   instance:
     prefer-ip-address: true #是否使用ip地址注册

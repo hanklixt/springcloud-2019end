@@ -1,5 +1,6 @@
 package com.hank.cloud.order;
 
+import com.netflix.discovery.DiscoveryClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -26,4 +27,6 @@ public class OrderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrderApplication.class,args);
 	}
+
+
 }
