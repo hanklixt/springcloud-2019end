@@ -39,5 +39,13 @@ eureka:
 #    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
 #    MaxAutoRetries: 1 # 对当前实例的重试次数
 
-# 设置 hystrix调用的默认熔断超时时间
-
+# 配置feign 调用服务的日志输出，日志等级需要去搜下
+feign:
+  client:
+    config:
+      service-product:  #要调用的服务名
+        loggerLevel: FULL
+ #开启对 hystrix的支持
+  hystrix:
+    enabled: true
+    
