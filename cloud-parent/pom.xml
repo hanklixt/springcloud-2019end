@@ -12,6 +12,7 @@
         <module>shop_service_common</module>
         <module>shop_service_product</module>
         <module>shop_service_order</module>
+        <module>eureka_server</module>
     </modules>
 
     <parent>

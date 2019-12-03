@@ -27,7 +27,7 @@ public class ProductController {
 	}
 
 
-	@RequestMapping(value = "",method = RequestMethod.POST)
+	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	public String save(@RequestBody Product product) {
 		productService.save(product);
 		return "保存成功";
