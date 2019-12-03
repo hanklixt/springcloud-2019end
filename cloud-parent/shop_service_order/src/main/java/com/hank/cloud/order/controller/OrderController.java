@@ -29,7 +29,7 @@ public class OrderController {
 
     @GetMapping("/product/{id}")
      public Product productById(String id){
-        Product forObject = restTemplate.getForObject("http://localhost:9091/product/1", Product.class);
+        Product forObject = restTemplate.getForObject("http://service-product/product/1", Product.class);
         return forObject;
     }
 
