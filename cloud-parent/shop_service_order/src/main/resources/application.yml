@@ -24,16 +24,20 @@ eureka:
   instance:
     prefer-ip-address: true #使用ip地址注册
 
+
 #logging:
 #  level:
 #    root: debug
 
 #修改ribbon的负载均衡策略   服务名 -  ribbon - NFLoadBalancerRuleClassName : 策略
-service-product:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule   #设置负载均衡策略
-    ConnectTimeout: 250 # Ribbon的连接超时时间
-    ReadTimeout: 1000 # Ribbon的数据读取超时时间
-    OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
-    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
-    MaxAutoRetries: 1 # 对当前实例的重试次数
+#service-product:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule   #设置负载均衡策略
+#    ConnectTimeout: 250 # Ribbon的连接超时时间
+#    ReadTimeout: 1000 # Ribbon的数据读取超时时间
+#    OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+#    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+#    MaxAutoRetries: 1 # 对当前实例的重试次数
+
+# 设置 hystrix调用的默认熔断超时时间
+
