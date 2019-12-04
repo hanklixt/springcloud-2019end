@@ -1,0 +1,16 @@
+server:
+  port: 6003
+
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: product-service #随便写
+          uri: http://localhost:9002
+       #这种断言方式是将uri和 path转发到拼接起来的地址
+          predicates:
+           - Path: /product/**
+
