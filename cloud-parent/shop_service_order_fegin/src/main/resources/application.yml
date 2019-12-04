@@ -61,6 +61,13 @@ feign:
  #开启对 hystrix的支持
   hystrix:
     enabled: true
+#dashboard 暴露服务端点 到监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 
 
 
