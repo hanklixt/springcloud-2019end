@@ -22,3 +22,4 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}   #设置实例名称，在界面显示，spring.cloud.client.ip-address 为本机ip
     lease-expiration-duration-in-seconds: 10  #设置服务到期续约的时间，如到期未发现服务，则剔除
     lease-renewal-interval-in-seconds: 5  #设置心跳间隔时间
+

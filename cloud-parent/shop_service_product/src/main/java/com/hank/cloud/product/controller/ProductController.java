@@ -23,11 +23,14 @@ public class ProductController {
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public Product findById(@PathVariable Long id) {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-
-
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//
+//
+//		}
+		if (id.equals(1L)){
+			throw new RuntimeException("人为制造异常");
 		}
 		Product product = productService.findById(id);
 		product.setProductName("访问的服务地址:"+ip + ":" + port);
