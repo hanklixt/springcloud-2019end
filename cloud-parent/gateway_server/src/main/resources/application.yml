@@ -2,6 +2,7 @@ server:
   port: 6003
 
 
+
 spring:
   application:
     name: gateway-service
@@ -9,8 +10,16 @@ spring:
     gateway:
       routes:
         - id: product-service #随便写
-          uri: http://localhost:9002
+#          uri: http://localhost:9002
+          uri: lb://product-service  #使用lb,则为从注册中心拉取的动态路由
        #这种断言方式是将uri和 path转发到拼接起来的地址
           predicates:
            - Path: /product/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+  instance:
+    prefer-ip-address: true
 
