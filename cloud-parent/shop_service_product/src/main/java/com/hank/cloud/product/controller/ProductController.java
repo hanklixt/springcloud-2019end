@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -21,6 +23,12 @@ public class ProductController {
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public Product findById(@PathVariable Long id) {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+
+
+		}
 		Product product = productService.findById(id);
 		product.setProductName("访问的服务地址:"+ip + ":" + port);
 		return product;

@@ -1,5 +1,5 @@
 server:
-  port: 9003 #端口
+  port: 9002 #端口
 spring:
   cloud:
     loadbalancer:
@@ -16,6 +16,8 @@ spring:
     database: MySQL
     show-sql: true
     open-in-view: true
+  main:
+    allow-bean-definition-overriding: true
 #配置Eureka
 eureka:
   client:
@@ -39,14 +41,26 @@ eureka:
 #    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
 #    MaxAutoRetries: 1 # 对当前实例的重试次数
 
+# 配置feign 调用服务的日志输出，日志等级需要去搜下
+feign:
+  client:
+    config:
+      service-product:  #要调用的服务名
+        loggerLevel: FULL
+        readTimeout: 5000
+        connectTimeout: 5000
+        ribbon:
+          readTimeout: 5000
+          connectTimeout: 5000
+          MaxAutoRetries: 3  #同一台实例最大重试次数，不包括首次调用
+          MaxAutoRetriesNextServer: 3 #重试负载均衡其他的实例最大重试次数，不包括首次server
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+ #开启对 hystrix的支持
+  hystrix:
+    enabled: true
 
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-#          strategy: ExecutionIsolationStrategy.SEMAPHORE #信号量隔离
-#          strategy: # ExecutionIsolationStrategy.THREAD 线程池隔离
-          thread:
-            timeoutInMilliseconds: 6000 #默认的连接超时时间1秒,若1秒没有返回数据,自动的触发降级逻辑
+

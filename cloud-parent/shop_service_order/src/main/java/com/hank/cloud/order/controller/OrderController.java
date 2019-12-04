@@ -1,7 +1,6 @@
 package com.hank.cloud.order.controller;
 
 import com.hank.cloud.order.entity.Product;
-import com.netflix.discovery.DiscoveryClient;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,7 @@ public class OrderController {
 
     @Autowired
     private RestTemplate restTemplate;
+
 /*
 标准元数据：主机名、IP地址、端口号、状态页和健康检查等信息，这些信息都会被发布在服务注
 册表中，用于服务之间的调用。
@@ -33,12 +33,13 @@ public class OrderController {
 //    @Autowired
 //    private DiscoveryClient discoveryClient;
 
- //   @HystrixCommand(fallbackMethod = "fallback")  如使用同一配置，这里不需要单独来配置
+  // @HystrixCommand(fallbackMethod = "fallback")  //如使用同一配置，这里不需要单独来配置
     @GetMapping("/product/{id}")
-     public Product productById(String id){
+    public Product productById(String id){
         Product forObject = restTemplate.getForObject("http://service-product/product/1", Product.class);
         return forObject;
     }
+
 
 
     /**
@@ -58,7 +59,7 @@ public class OrderController {
      */
     public Product fallback(String id){
         Product product = new Product();
-        product.setProductName("fallback");
+        product.setProductName("restTemplate fallback");
         return product;
     }
 

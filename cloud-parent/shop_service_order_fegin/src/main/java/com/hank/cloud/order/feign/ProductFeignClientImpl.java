@@ -13,7 +13,7 @@ public class ProductFeignClientImpl implements  ProductFeignClient {
     @Override
     public Product findById(Long id) {
         Product product=new Product();
-        product.setProductName("fallback");
+        product.setProductName("feign fallback");
         return product;
     }
 }
