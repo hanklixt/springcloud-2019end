@@ -1,0 +1,18 @@
+server:
+  port: 6320
+spring:
+  application:
+    name: zuul-service
+zuul:
+  routes:
+#    product-service: # 这里是路由id，随意写
+#      path: /product-service/** # 这里是映射路径
+#      serviceId: shop-service-product #配置转发的微服务名称
+  #简化配置
+   service-product: /product-service/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+  instance:
+    prefer-ip-address: true
