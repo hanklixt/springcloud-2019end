@@ -18,7 +18,7 @@ spring:
             - Path=/product-service/**
           filters:
             - RewritePath=/product-service/(?<segment>.*), /$\{segment}
-            - name= RequestRateLimiter
+            - name: RequestRateLimiter
               args:
                 # 使用SpEL从容器中获取对象
                 key-resolver: '#{@pathKeyResolver}'
