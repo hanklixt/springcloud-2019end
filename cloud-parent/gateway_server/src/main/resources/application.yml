@@ -18,6 +18,7 @@ spring:
             - Path=/product-service/**
           filters:
             - RewritePath=/product-service/(?<segment>.*), /$\{segment}
+
       #上面的配置可以简化为从注册中心自动拉取
       discovery:
         locator:
