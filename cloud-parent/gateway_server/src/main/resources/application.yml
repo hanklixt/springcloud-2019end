@@ -18,12 +18,22 @@ spring:
             - Path=/product-service/**
           filters:
             - RewritePath=/product-service/(?<segment>.*), /$\{segment}
-
-      #上面的配置可以简化为从注册中心自动拉取
-      discovery:
-        locator:
-          enabled: true   #开启从注册中心自动拉取
-          lower-case-service-id: true   #拉取的微服务名称改成小写
+            - name= RequestRateLimiter
+              args:
+                # 使用SpEL从容器中获取对象
+                key-resolver: '#{@pathKeyResolver}'
+                # 令牌桶每秒填充平均速率
+                redis-rate-limiter.replenishRate: 1
+                # 令牌桶的总容量
+                redis-rate-limiter.burstCapacity: 3
+#      #上面的配置可以简化为从注册中心自动拉取
+#      discovery:
+#        locator:
+#          enabled: true   #开启从注册中心自动拉取
+#          lower-case-service-id: true   #拉取的微服务名称改成小写
+  redis:
+   host: localhost
+   port: 6379
 
 eureka:
   client:
