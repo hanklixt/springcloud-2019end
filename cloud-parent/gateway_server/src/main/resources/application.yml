@@ -9,12 +9,20 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: product-service #随便写
+        - id: product-service #随便写，保持唯一
 #          uri: http://localhost:9002
-          uri: lb://product-service  #使用lb,则为从注册中心拉取的动态路由
-       #这种断言方式是将uri和 path转发到拼接起来的地址
+          uri: lb://service-product  #使用lb,则为从注册中心拉取的动态路由
+       # 不使用filter这种断言方式是将uri和 path转发到拼接起来的地址
           predicates:
-           - Path: /product/**
+#           - Path=/product/**
+            - Path=/product-service/**
+          filters:
+            - RewritePath=/product-service/(?<segment>.*), /$\{segment}
+      #上面的配置可以简化为从注册中心自动拉取
+      discovery:
+        locator:
+          enabled: true   #开启从注册中心自动拉取
+          lower-case-service-id: true   #拉取的微服务名称改成小写
 
 eureka:
   client:
@@ -22,4 +30,6 @@ eureka:
       defaultZone: http://localhost:9000/eureka/
   instance:
     prefer-ip-address: true
-
+logging:
+  level:
+    root: debug

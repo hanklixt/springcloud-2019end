@@ -29,7 +29,7 @@ public class ProductController {
 //
 //
 //		}
-		if (id.equals(1L)){
+		if (id.equals(2L)){
 			throw new RuntimeException("人为制造异常");
 		}
 		Product product = productService.findById(id);
